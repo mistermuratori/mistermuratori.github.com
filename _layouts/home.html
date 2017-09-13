@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ page.title }}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+    <style type="text/css">
+        html, body {
+          scroll-behavior: smooth;
+        }
+    </style>
+    <script></script>
+</head>
+<body>
+    <!-- Header -->
+    <section id="header">
+        <header>
+            <h1>MISTERMURATORI</h1>
+            <p>Folding bike</p>
+        </header>
+        <footer>
+            <a href="#first" class="button style2 scrolly-middle">Explore</a>
+        </footer>
+    </section>
+
+    <!-- Complete Bike -->
+    <article id="first" class="container box style1 right">
+        <a href="#" class="image fit"><img src="/assets/images/pic01.png" alt="" /></a>
+        <div class="inner">
+            <header>
+                <h2>Bike</h2>
+            </header>
+            <p>The complete bike.</p>
+            <p>
+                <strong>Select your disscount.</strong>
+                <form method="post" action="#">
+                    I want <input id="bike_num" type="number" min="0" max="5" value="0" style="max-width: 3em; border: none; text-align: right;"/> bikes.<br>
+                    <span id="bike_piece_price">
+                        You pay <strong>€ <span id="bike_dis">0</span></strong> per piece.
+                    </span>
+                </form>
+            </p>
+        </div>
+    </article>
+
+    <!-- Frame -->
+    <article class="container box style1 left">
+        <a href="#" class="image fit"><img src="/assets/images/pic02.png" alt="" /></a>
+        <div class="inner">
+            <header>
+                <h2>Frame</h2>
+            </header>
+            <p>The frame, fresh from the bakery.</p>
+            <p>
+                <strong>Select your disscount.</strong>
+                <form method="post" action="#">
+                    I want <input id="frame_num" type="number" min="0" max="20" value="0" style="max-width: 3em; border: none; text-align: right;"/> frames.<br>
+                    <span id="frame_piece_price">
+                        You pay <strong>€ <span id="frame_dis">0</span></strong>  per piece.</span>
+                    </span>
+                </form>
+            </p>
+        </div>
+    </article>
+
+    <!-- Contact -->
+    <article class="container box style3">
+        <header>
+            <h2>Contact</h2>
+            <p>Give feedback or ask questions.</p>
+        </header>
+        <form method="post" action="#">
+            <div class="row 50%">
+                <div class="6u 12u$(mobile)"><input type="text" class="text" name="name" placeholder="Name" /></div>
+                <div class="6u$ 12u$(mobile)"><input type="text" class="text" name="email" placeholder="Email" /></div>
+                <div class="12u$">
+                    <textarea name="message" placeholder="Message"></textarea>
+                </div>
+                <div class="12u$">
+                    <ul class="actions">
+                        <li><input type="submit" value="Send Message" /></li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </article>
+
+    <section id="footer">
+        <ul class="icons">
+            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon fa-youtube"><span class="label">Pinterest</span></a></li>
+            <li><a href="#" class="icon fa-instagram"><span class="label">LinkedIn</span></a></li>
+        </ul>
+        <div class="copyright">
+            <ul class="menu">
+                <li>&copy; MISTERMURATORI</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/jquery.scrolly.min.js"></script>
+    <script src="/assets/js/jquery.poptrox.min.js"></script>
+    <script src="/assets/js/skel.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="/assets/js/main.js"></script>
+    <script>
+        const bike_con = document.getElementById("bike_piece_price");
+        const bike_num = document.getElementById("bike_num");
+        const bike_dis = document.getElementById("bike_dis");
+        const bike_prices = [895, 845, 810, 785, 775];
+
+        const frame_con = document.getElementById("frame_piece_price");
+        const frame_num = document.getElementById("frame_num");
+        const frame_dis = document.getElementById("frame_dis");
+        const frame_prices = [595, 583, 576, 570, 564, 556, 551, 545, 538, 532, 526, 520, 513, 507, 500, 494, 488, 482, 475, 469];
+
+        function getPrice (container, input, print, list) {
+            const current_num = parseInt(input.value);
+            if (current_num === 0) {
+                container.style.display = "none";
+            } else {
+                container.style.display = "inline";
+            }
+            print.innerHTML = list[current_num - 1] || list[0];
+        }
+
+        window.onload = () => {
+            getPrice(bike_con, bike_num, bike_dis, bike_prices);
+            getPrice(frame_con, frame_num, frame_dis, frame_prices);
+        };
+
+        bike_num.oninput = () => {getPrice(bike_con, bike_num, bike_dis, bike_prices)};
+        frame_num.oninput = () => {getPrice(frame_con, frame_num, frame_dis, frame_prices)};
+    </script>
+</body>
+</html>
