@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
     <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/slick.css"/>
     <style type="text/css">
         html, body {
           scroll-behavior: smooth;
@@ -27,41 +28,55 @@
 
     <!-- Complete Bike -->
     <article id="first" class="container box style1 right">
-        <a href="#" class="image fit"><img src="/assets/images/pic01.png" alt="" /></a>
+        <div class="image fit">
+            <a href="/assets/images/complete/image1.JPG"><img src="/assets/images/complete/image1.JPG" title="The complete bike"/></a>
+            <a href="/assets/images/complete/image2.JPG"><img src="/assets/images/complete/image2.JPG" title="The complete bike"/></a>
+            <a href="/assets/images/complete/image3.JPG"><img src="/assets/images/complete/image3.JPG" title="The complete bike"/></a>
+            <a href="/assets/images/complete/image4.JPG"><img src="/assets/images/complete/image4.JPG" title="The complete bike"/></a>
+            <a href="/assets/images/complete/image5.JPG"><img src="/assets/images/complete/image5.JPG" title="The complete bike"/></a>
+            <a href="/assets/images/complete/image6.JPG"><img src="/assets/images/complete/image6.JPG" title="The complete bike"/></a>
+        </div>
         <div class="inner">
             <header>
                 <h2>Bike</h2>
             </header>
             <p>The complete bike.</p>
-            <p>
-                <strong>Select your disscount.</strong>
-                <form method="post" action="#">
-                    I want <input id="bike_num" type="number" min="0" max="5" value="0" style="max-width: 3em; border: none; text-align: right;"/> bikes.<br>
-                    <span id="bike_piece_price">
-                        You pay <strong>€ <span id="bike_dis">0</span></strong> per piece.
-                    </span>
-                </form>
-            </p>
+            <div class="discount">
+                <strong>Select your discount.</strong>
+                <br>
+                I want <input id="bike_num" type="number" min="0" max="5" value="0" style="max-width: 3em; border: none; text-align: right;"/> bikes.
+                <br>
+                <span id="bike_piece_price">
+                    You pay <strong>€ <span id="bike_dis">0</span></strong> per piece.
+                </span>
+            </div>
         </div>
     </article>
 
     <!-- Frame -->
     <article class="container box style1 left">
-        <a href="#" class="image fit"><img src="/assets/images/pic02.png" alt="" /></a>
+        <div class="image fit">
+            <a href="/assets/images/frame/image1.JPG"><img src="/assets/images/frame/image1.JPG" title="The frame"/></a>
+            <a href="/assets/images/frame/image2.JPG"><img src="/assets/images/frame/image2.JPG" title="The frame"/></a>
+            <a href="/assets/images/frame/image3.JPG"><img src="/assets/images/frame/image3.JPG" title="The frame"/></a>
+            <a href="/assets/images/frame/image4.JPG"><img src="/assets/images/frame/image4.JPG" title="The frame"/></a>
+            <a href="/assets/images/frame/image5.JPG"><img src="/assets/images/frame/image5.JPG" title="The frame"/></a>
+            <a href="/assets/images/frame/image6.JPG"><img src="/assets/images/frame/image6.JPG" title="The frame"/></a>
+        </div>
         <div class="inner">
             <header>
                 <h2>Frame</h2>
             </header>
             <p>The frame, fresh from the bakery.</p>
-            <p>
-                <strong>Select your disscount.</strong>
-                <form method="post" action="#">
-                    I want <input id="frame_num" type="number" min="0" max="20" value="0" style="max-width: 3em; border: none; text-align: right;"/> frames.<br>
-                    <span id="frame_piece_price">
-                        You pay <strong>€ <span id="frame_dis">0</span></strong>  per piece.</span>
-                    </span>
-                </form>
-            </p>
+            <div class="discount">
+                <strong>Select your discount.</strong>
+                <br>
+                I want <input id="frame_num" type="number" min="0" max="20" value="0" style="max-width: 3em; border: none; text-align: right;"/> frames.
+                <br>
+                <span id="frame_piece_price">
+                    You pay <strong>€ <span id="frame_dis">0</span></strong>  per piece.</span>
+                </span>
+            </div>
         </div>
     </article>
 
@@ -106,6 +121,7 @@
     <script src="/assets/js/jquery.poptrox.min.js"></script>
     <script src="/assets/js/skel.min.js"></script>
     <script src="/assets/js/util.js"></script>
+    <script type="text/javascript" src="/assets/js/slick.min.js"></script>
     <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js"></script><![endif]-->
     <script src="/assets/js/main.js"></script>
     <script>

@@ -61,6 +61,10 @@
 
 /* Basic */
 
+    .hide {
+        display: none;
+    }
+
     body {
         background-color: #183026;
         background-image: url('/assets/images/dark_geometric.png');
@@ -133,7 +137,6 @@
         color: #35b88f;
         text-shadow: 0 0 0.5px rgba(53, 184, 143, 0.25);
         text-decoration: none;
-        border-bottom: dotted 1px rgba(53, 184, 143, 0.5);
 
         &:hover {
             border-bottom-color: rgba(53, 184, 143, 0);
@@ -524,20 +527,23 @@
                 top: 0;
                 width: 50%;
                 height: 100%;
-                background: #152E33;
+                background: #000000;
                 overflow: hidden;
 
                 img {
-                    position: absolute;
                     top: 0;
-                    height: 100%;
-                    width: auto;
+                    height: auto;
+                    width: 100%;
                 }
             }
 
             .inner {
                 > :last-child {
                     margin: 0;
+                }
+
+                .discount {
+                    min-height: 115px;
                 }
             }
 
