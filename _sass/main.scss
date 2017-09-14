@@ -93,13 +93,23 @@
     }
 
     .cart {
-        position: fixed!important;
-        font-weight: normal!important;
-        top: 50px;
-        right: 50px;
+        position: fixed;
+        @include vendor('transition', ('background-color 0.35s ease-in-out', 'color 0.35s ease-in-out'));
+        top: 3em;
+        right: 3em;
         z-index: 100;
+        text-decoration: none;
+        background: #35b88f;
+        color: #ffffff;
+        padding: 1em 2em 1em 2em;
+        border-radius: 3em;
 
-        span {
+        &:hover {
+            cursor: pointer;
+            background: #45c89f;
+        }
+
+        .note {
             display: block;
             font-size: 14px;
             line-height: 14px;
@@ -489,6 +499,11 @@
                 color: #fff !important;
                 text-shadow: 0 0 0.5px rgba(255, 255, 255, 0.25) !important;
             }
+        }
+
+        &.with-icon {
+            font-size: 40px;
+            padding: 0.5em 1.5em 0.5em 1.5em;
         }
 
         &.style3 {
@@ -1157,6 +1172,10 @@
                 padding: 0.75em 0 0.75em 0;
                 width: 100%;
                 max-width: 320px;
+
+                &.with-icon {
+                    width: initial;
+                }
             }
 
         /* Box */

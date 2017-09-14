@@ -147,6 +147,8 @@
         var sum = 0;
         var orderFormCon = $("#order-form-container");
         var orderTotal = $(".order-total");
+        var cartAnchor = $(".cart");
+        var orderFormVisible = false;
 
         function itemChanged () {
             // get current values
@@ -175,8 +177,15 @@
             // update the order form
             if (bikeCount > 0 || frameCount > 0) {
                 orderFormCon.removeClass("hide");
+                orderFormVisible = true;
+
+                if (!isOnScreen(orderFormCon)) {
+                    cartAnchor.removeClass("hide");
+                }
             } else {
                 orderFormCon.addClass("hide");
+                orderFormVisible = false;
+                cartAnchor.addClass("hide");
             }
             sum = bikeCount * pricePerBike + frameCount * pricePerFrame;
             orderTotal.html(sum);
@@ -184,6 +193,37 @@
 
         bikeNum.on('input', itemChanged);
         frameNum.on('input', itemChanged);
+
+        /* Cart Anchor hide/show */
+        $(window).on('scroll', function (e) {
+            if (!orderFormVisible) {
+                return;
+            }
+
+            // check if the order form is in view
+            if (isOnScreen(orderFormCon)) {
+                cartAnchor.addClass('hide');
+            } else {
+                cartAnchor.removeClass('hide');
+            }
+
+        });
+
+        function isOnScreen (element) {
+            var win = $(window);
+            var viewport = {
+                top : win.scrollTop(),
+                left : win.scrollLeft()
+            };
+            viewport.right = viewport.left + win.width();
+            viewport.bottom = viewport.top + win.height();
+
+            var bounds = orderFormCon.offset();
+            bounds.right = bounds.left + orderFormCon.outerWidth();
+            bounds.bottom = bounds.top + orderFormCon.outerHeight();
+
+            return !(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom);
+        }
 
         /* Forms */
         var orderFormContent = $('#order-form-container .form-content');
