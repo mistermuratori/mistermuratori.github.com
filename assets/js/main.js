@@ -52,12 +52,12 @@
 
         // Scrolly links.
         $('.scrolly-middle').scrolly({
-            speed: 1000,
+            speed: 200,
             anchor: 'middle'
         });
 
         $('.scrolly').scrolly({
-            speed: 1000,
+            speed: 200,
             offset: function() { return (skel.breakpoint('mobile').active ? 70 : 190); }
         });
 
@@ -130,6 +130,112 @@
         $('.image').slick({
             arrows: false,
             dots: true
+        });
+
+        /* ORDER */
+
+        var bikeCon = $(".bike-piece-price");
+        var bikeNum = $(".bike-num");
+        var bikeDis = $(".bike-dis");
+        var bikePrices = [895, 845, 810, 785, 775];
+
+        var frameCon = $(".frame-piece-price");
+        var frameNum = $(".frame-num");
+        var frameDis = $(".frame-dis");
+        var framePrices = [595, 583, 576, 570, 564, 556, 551, 545, 538, 532, 526, 520, 513, 507, 500, 494, 488, 482, 475, 469];
+
+        var sum = 0;
+        var orderFormCon = $("#order-form-container");
+        var orderTotal = $(".order-total");
+
+        function itemChanged () {
+            // get current values
+            var bikeCount = parseInt(bikeNum.val()) || 0;
+            var frameCount = parseInt(frameNum.val()) || 0;
+
+            var pricePerBike = bikePrices[bikeCount - 1] || bikePrices[0];
+            var pricePerFrame = framePrices[frameCount - 1] || framePrices[0];
+
+            // update the prices
+            if (bikeCount === 0) {
+                bikeCon.addClass("hide");
+            } else {
+                bikeCon.removeClass("hide");
+            }
+            bikeDis.html(pricePerBike);
+
+            if (frameCount === 0) {
+                frameCon.addClass("hide");
+            } else {
+                frameCon.removeClass("hide");
+            }
+            frameDis.html(pricePerFrame);
+
+
+            // update the order form
+            if (bikeCount > 0 || frameCount > 0) {
+                orderFormCon.removeClass("hide");
+            } else {
+                orderFormCon.addClass("hide");
+            }
+            sum = bikeCount * pricePerBike + frameCount * pricePerFrame;
+            orderTotal.html(sum);
+        }
+
+        bikeNum.on('input', itemChanged);
+        frameNum.on('input', itemChanged);
+
+        /* Forms */
+        var orderFormContent = $('#order-form-container .form-content');
+        var orderFormResponse = $('#order-form-container .form-response');
+        $('.order-form').on('submit', function (e) {
+            e.preventDefault();
+
+            var data = $(this).serializeArray().reduce(function(obj, item) {
+                obj[item.name] = item.value;
+                return obj;
+            }, {});
+
+            // send email
+
+            // show response
+            orderFormContent.hide();
+            orderFormResponse.fadeIn(200);
+
+            // reset items
+            $(this)[0].reset();
+            setTimeout(function () {
+                orderFormResponse.hide()
+                orderFormContent.show();
+
+                bikeNum.val(0);
+                frameNum.val(0);
+                itemChanged();
+            }, 3000)
+        });
+
+        var contactFormContent = $('.contact-form-container .form-content');
+        var contactFormResponse = $('.contact-form-container .form-response');
+        $('.contact-form').on('submit', function (e) {
+            e.preventDefault();
+
+            var data = $(this).serializeArray().reduce(function(obj, item) {
+                obj[item.name] = item.value;
+                return obj;
+            }, {});
+
+            // send email
+
+            // show response
+            contactFormContent.hide();
+            contactFormResponse.fadeIn(200);
+
+            // reset form
+            $(this)[0].reset();
+            setTimeout(function () {
+                contactFormResponse.hide()
+                contactFormContent.fadeIn(200);
+            }, 3000)
         });
     });
 
