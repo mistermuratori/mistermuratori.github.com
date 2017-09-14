@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ page.title }}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/slick.css"/>
+    <style type="text/css">
+        html, body {
+          scroll-behavior: smooth;
+        }
+    </style>
+    <script></script>
+</head>
+<body>
+    <a href="#order-form-container" class="cart scrolly hide">
+        Your total: €<span class="order-total"></span>
+        <span class="note">Place Order</span>
+    </a>
+
+    <!-- Header -->
+    <section id="header">
+        <header>
+            <h1>MISTERMURATORI</h1>
+            <p>Folding bike</p>
+        </header>
+        <footer>
+            <a href="#first" class="button style2 with-icon scrolly-middle"><i class="fa fa-bicycle" aria-hidden="true"></i></a>
+        </footer>
+    </section>
+
+    <!-- Complete Bike -->
+    <article id="first" class="container box style1 right">
+        <div class="image fit">
+            <a href="/assets/images/complete/image1.JPG"><img src="/assets/images/complete/image1.JPG" title="The complete bike"/></a>
+            <a href="/assets/images/complete/image2.JPG"><img src="/assets/images/complete/image2.JPG" title="The complete bike"/></a>
+            <a href="/assets/images/complete/image3.JPG"><img src="/assets/images/complete/image3.JPG" title="The complete bike"/></a>
+            <a href="/assets/images/complete/image4.JPG"><img src="/assets/images/complete/image4.JPG" title="The complete bike"/></a>
+            <a href="/assets/images/complete/image5.JPG"><img src="/assets/images/complete/image5.JPG" title="The complete bike"/></a>
+            <a href="/assets/images/complete/image6.JPG"><img src="/assets/images/complete/image6.JPG" title="The complete bike"/></a>
+        </div>
+        <div class="inner">
+            <header>
+                <h2>Bike</h2>
+            </header>
+            <p>The complete bike.</p>
+            <div class="discount">
+                <strong>Select your discount.</strong>
+                <br>
+                I want <input class="bike-num" type="number" min="0" max="5" value="0" style="max-width: 3em; border: none; text-align: right;"/> bikes.
+                <br>
+                <span class="bike-piece-price hide">
+                    You pay <strong>€ <span class="bike-dis">0</span></strong> per piece.
+                </span>
+            </div>
+        </div>
+    </article>
+
+    <!-- Frame -->
+    <article class="container box style1 left">
+        <div class="image fit">
+            <a href="/assets/images/frame/image1.JPG"><img src="/assets/images/frame/image1.JPG" title="The frame"/></a>
+            <a href="/assets/images/frame/image2.JPG"><img src="/assets/images/frame/image2.JPG" title="The frame"/></a>
+            <a href="/assets/images/frame/image3.JPG"><img src="/assets/images/frame/image3.JPG" title="The frame"/></a>
+            <a href="/assets/images/frame/image4.JPG"><img src="/assets/images/frame/image4.JPG" title="The frame"/></a>
+            <a href="/assets/images/frame/image5.JPG"><img src="/assets/images/frame/image5.JPG" title="The frame"/></a>
+            <a href="/assets/images/frame/image6.JPG"><img src="/assets/images/frame/image6.JPG" title="The frame"/></a>
+        </div>
+        <div class="inner">
+            <header>
+                <h2>Frame</h2>
+            </header>
+            <p>The frame, fresh from the bakery.</p>
+            <div class="discount">
+                <strong>Select your discount.</strong>
+                <br>
+                I want <input class="frame-num" type="number" min="0" max="5" value="0" style="max-width: 3em; border: none; text-align: right;"/> frames.
+                <br>
+                <span class="frame-piece-price hide">
+                    You pay <strong>€ <span class="frame-dis">0</span></strong> per piece.
+                </span>
+            </div>
+        </div>
+    </article>
+
+    <!-- Order Form -->
+    <article class="container box style3 hide" id="order-form-container">
+        <div class="form-content">
+            <header>
+                <h2>Order</h2>
+                <p>Your total: €<span class="order-total"></span>.</p>
+                <p>Enter you email address and we will contact you as soon as possible.</p>
+            </header>
+            <form method="post" action="#" class="order-form">
+                <div class="row 50%">
+                    <div class="12u$">
+                        <input type="email" class="text" name="email" placeholder="Email" required />
+                    </div>
+                    <div class="12u$">
+                        <ul class="actions">
+                            <li><input type="submit" value="Place Order" /></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="form-response">
+            <p>Thank you for your submission. Your order will be processed shortly.</p>
+        </div>
+
+    </article>
+
+    <!-- Contact -->
+    <article class="container box style3 contact-form-container">
+        <div class="form-content">
+            <header>
+                <h2>Contact</h2>
+                <p>Give feedback or ask questions.</p>
+            </header>
+            <form method="post" action="#" class="contact-form">
+                <div class="row 50%">
+                    <div class="6u 12u$(mobile)"><input type="text" class="text" name="name" placeholder="Name" required/></div>
+                    <div class="6u$ 12u$(mobile)"><input type="email" class="text" name="email" placeholder="Email" required/></div>
+                    <div class="12u$">
+                        <textarea name="message" placeholder="Message" required></textarea>
+                    </div>
+                    <div class="12u$">
+                        <ul class="actions">
+                            <li><input type="submit" value="Send Message" /></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="form-response">
+            <p>Thank you for your submission. Your email will be processed shortly.</p>
+        </div>
+    </article>
+
+    <section id="footer">
+        <ul class="icons">
+            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="https://www.instagram.com/mistermuratori/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        </ul>
+        <div class="copyright">
+            <ul class="menu">
+                <li>&copy; MISTERMURATORI</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/jquery.scrolly.min.js"></script>
+    <script src="/assets/js/jquery.poptrox.min.js"></script>
+    <script src="/assets/js/skel.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script type="text/javascript" src="/assets/js/slick.min.js"></script>
+    <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>
