@@ -120,7 +120,6 @@
             overlayColor: '#0a1919',
             overlayOpacity: (skel.vars.IEVersion < 9 ? 0 : 0.75),
             usePopupDefaultStyling: false,
-            usePopupCaption: true,
             popupLoaderText: '',
             windowMargin: 10,
             usePopupNav: true
@@ -151,9 +150,28 @@
         var orderFormVisible = false;
 
         function itemChanged () {
+
             // get current values
             var bikeCount = parseInt(bikeNum.val()) || 0;
             var frameCount = parseInt(frameNum.val()) || 0;
+
+            // validate numbers
+            if (bikeCount > 5) {
+                bikeNum.val(5);
+                bikeCount = 5;
+            }
+            if (bikeCount < 0) {
+                bikeNum.val(0);
+                bikeCount = 0;
+            }
+            if (frameCount > 5) {
+                frameNum.val(5);
+                frameCount = 5;
+            }
+            if (frameCount < 0) {
+                frameNum.val(0);
+                frameCount = 0;
+            }
 
             var pricePerBike = bikePrices[bikeCount - 1] || bikePrices[0];
             var pricePerFrame = framePrices[frameCount - 1] || framePrices[0];
@@ -209,6 +227,94 @@
 
         });
 
+        /* Forms */
+        var orderFormContent = $('#order-form-container .form-content');
+        var orderFormResponse = $('#order-form-container .form-response');
+        $('.order-form').on('submit', function (e) {
+            e.preventDefault();
+
+            var data = $(this).serializeArray().reduce(function(obj, item) {
+                obj[item.name] = item.value;
+                return obj;
+            }, {});
+
+            // send email
+            data.bike_num = parseInt(bikeNum.val()) || 0;
+            data.frame_num = parseInt(frameNum.val()) || 0;
+            data.price_per_bike = bikePrices[data.bike_num - 1] || bikePrices[0];
+            data.price_per_frame = framePrices[data.frame_num - 1] || framePrices[0];
+            data.total = sum;
+            sendEmail('example@domain.com', 'Mistermuratori new order', data, function (err) {
+
+                if (err) {
+                    return console.error(error);
+                }
+
+                // show response
+                orderFormContent.hide();
+                orderFormResponse.fadeIn(200);
+
+                // reset items
+                $('.order-form')[0].reset();
+                setTimeout(function () {
+                    orderFormResponse.hide()
+                    orderFormContent.show();
+
+                    bikeNum.val(0);
+                    frameNum.val(0);
+                    itemChanged();
+                }, 3000)
+            });
+        });
+
+        var contactFormContent = $('.contact-form-container .form-content');
+        var contactFormResponse = $('.contact-form-container .form-response');
+        $('.contact-form').on('submit', function (e) {
+            e.preventDefault();
+
+            var data = $(this).serializeArray().reduce(function(obj, item) {
+                obj[item.name] = item.value;
+                return obj;
+            }, {});
+
+            // send email
+            sendEmail('example@domain.com', 'Mistermuratori contact form submission', data, function (err) {
+
+                if (err) {
+                    return console.error(error);
+                }
+
+                // show response
+                contactFormContent.hide();
+                contactFormResponse.fadeIn(200);
+
+                // reset form
+                $('.contact-form')[0].reset();
+                setTimeout(function () {
+                    contactFormResponse.hide()
+                    contactFormContent.fadeIn(200);
+                }, 3000)
+            });
+        });
+
+        // Order utils
+
+        function sendEmail(to, subject, data, callback) {
+            data._subject = subject;
+            $.ajax({
+                url: 'https://formspree.io/' + to,
+                method: 'POST',
+                data: data,
+                dataType: 'json',
+                error: function (xhr, status, error) {
+                    callback(error);
+                },
+                success: function () {
+                    callback(null);
+                }
+            });
+        }
+
         function isOnScreen (element) {
             var win = $(window);
             var viewport = {
@@ -224,59 +330,5 @@
 
             return !(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom);
         }
-
-        /* Forms */
-        var orderFormContent = $('#order-form-container .form-content');
-        var orderFormResponse = $('#order-form-container .form-response');
-        $('.order-form').on('submit', function (e) {
-            e.preventDefault();
-
-            var data = $(this).serializeArray().reduce(function(obj, item) {
-                obj[item.name] = item.value;
-                return obj;
-            }, {});
-
-            // send email
-
-            // show response
-            orderFormContent.hide();
-            orderFormResponse.fadeIn(200);
-
-            // reset items
-            $(this)[0].reset();
-            setTimeout(function () {
-                orderFormResponse.hide()
-                orderFormContent.show();
-
-                bikeNum.val(0);
-                frameNum.val(0);
-                itemChanged();
-            }, 3000)
-        });
-
-        var contactFormContent = $('.contact-form-container .form-content');
-        var contactFormResponse = $('.contact-form-container .form-response');
-        $('.contact-form').on('submit', function (e) {
-            e.preventDefault();
-
-            var data = $(this).serializeArray().reduce(function(obj, item) {
-                obj[item.name] = item.value;
-                return obj;
-            }, {});
-
-            // send email
-
-            // show response
-            contactFormContent.hide();
-            contactFormResponse.fadeIn(200);
-
-            // reset form
-            $(this)[0].reset();
-            setTimeout(function () {
-                contactFormResponse.hide()
-                contactFormContent.fadeIn(200);
-            }, 3000)
-        });
     });
-
 })(jQuery);

@@ -533,19 +533,6 @@
             border-left: solid 1px #fff;
         }
 
-        &:before {
-            content: '';
-            display: block;
-            width: 90px;
-            height: 66px;
-            position: absolute;
-            left: 50%;
-            top: -4.5em;
-            margin-left: -45px;
-            margin-top: -33px;
-            /* background: url('images/arrow.svg') no-repeat; */
-        }
-
         :last-child {
             margin-bottom: 0;
         }
@@ -711,7 +698,7 @@
             h1 {
                 font-family: "New Comic Title Bold Italic";
                 font-weight: 600;
-                font-size: 2em;
+                font-size: 3em;
                 letter-spacing: 10px;
             }
 
@@ -748,19 +735,6 @@
                 left: 50%;
                 height: 9em;
                 border-left: solid 1px #fff;
-            }
-
-            &:before {
-                content: '';
-                display: block;
-                width: 90px;
-                height: 66px;
-                position: absolute;
-                left: 50%;
-                bottom: -4.5em;
-                margin-left: -45px;
-                margin-bottom: -33px;
-                background: url('/assets/images/arrow.svg') no-repeat;
             }
         }
     }
@@ -859,8 +833,6 @@
 
     .poptrox-popup {
         @include vendor('box-sizing', 'content-box');
-        background: #fff;
-        padding-bottom: 3em;
 
         .loader {
             width: 48px;
@@ -1031,6 +1003,17 @@
                     margin: 0.25em 0 0 0;
                     padding: 0 0 0.5em 0;
                 }
+
+                h1 {
+                    font-family: "New Comic Title Bold Italic";
+                    font-size: 2em;
+                    letter-spacing: 6px;
+                }
+            }
+
+            .frame-num, .bike-num {
+                width: 2.5em;
+                font-weight: 400;
             }
 
         /* Box */
@@ -1115,6 +1098,10 @@
             .cart {
                 top: 1.5em;
                 right: 1.5em;
+            }
+
+            .frame-num, .bike-num {
+                width: 1.5em;
             }
 
         /* List */
