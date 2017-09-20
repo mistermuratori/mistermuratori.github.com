@@ -27,7 +27,7 @@
             <p>Folding bike</p>
         </header>
         <footer>
-            <a href="#first" class="button style2 with-icon scrolly-middle"><i class="fa fa-bicycle" aria-hidden="true"></i></a>
+            <a href="#first" class="button style2 with-icon scrolly-middle">Shop</a>
         </footer>
     </section>
 
@@ -87,56 +87,56 @@
 
     <!-- Order Form -->
     <article class="container box style3 hide" id="order-form-container">
-        <div class="form-content">
-            <header>
-                <h2>Order</h2>
-                <p>Your total: €<span class="order-total"></span>.</p>
-                <p>Enter you email address and we will contact you as soon as possible.</p>
-            </header>
-            <form method="post" action="#" class="order-form">
-                <div class="row 50%">
-                    <div class="12u$">
-                        <input type="email" class="text" name="email" placeholder="Email" required />
-                    </div>
-                    <div class="12u$">
-                        <ul class="actions">
-                            <li><input type="submit" value="Place Order" /></li>
-                        </ul>
-                    </div>
+        <header>
+            <h2>Order</h2>
+            <p>Your total: €<span class="order-total"></span>.</p>
+            <p>Enter you email address and we will contact you as soon as possible.</p>
+        </header>
+        <form method="post" action="https://formspree.io/order@example.com" class="order-form">
+            <div class="row 50%">
+                <div class="12u$">
+                    <input type="email" class="text" name="email" placeholder="Email" required />
                 </div>
-            </form>
-        </div>
-        <div class="form-response">
-            <p>Thank you for your submission. Your order will be processed shortly.</p>
-        </div>
-
+                <input type="text" name="bike_number" style="display:none" class="input-bike-count" value="0"/>
+                <input type="text" name="frame_number" style="display:none" class="input-frame-count" value="0"/>
+                <input type="text" name="price_per_bike" style="display:none" class="input-bike-price" value="0"/>
+                <input type="text" name="price_per_frame" style="display:none" class="input-frame-price" value="0"/>
+                <input type="text" name="total" style="display:none" class="input-total" value="0"/>
+                <input type="text" name="_gotcha" style="display:none" />
+                <input type="hidden" name="_subject" value="New order submission!" />
+                <input type="hidden" name="_next" value="https://mistermuratori.github.io/" />
+                <div class="12u$">
+                    <ul class="actions">
+                        <li><input type="submit" value="Place Order" /></li>
+                    </ul>
+                </div>
+            </div>
+        </form>
     </article>
 
     <!-- Contact -->
-    <article class="container box style3 contact-form-container">
-        <div class="form-content">
-            <header>
-                <h2>Contact</h2>
-                <p>Give feedback or ask questions.</p>
-            </header>
-            <form method="post" action="#" class="contact-form">
-                <div class="row 50%">
-                    <div class="6u 12u$(mobile)"><input type="text" class="text" name="name" placeholder="Name" required/></div>
-                    <div class="6u$ 12u$(mobile)"><input type="email" class="text" name="email" placeholder="Email" required/></div>
-                    <div class="12u$">
-                        <textarea name="message" placeholder="Message" required></textarea>
-                    </div>
-                    <div class="12u$">
-                        <ul class="actions">
-                            <li><input type="submit" value="Send Message" /></li>
-                        </ul>
-                    </div>
+    <article class="container box style3">
+        <header>
+            <h2>Contact</h2>
+            <p>Give feedback or ask questions.</p>
+        </header>
+        <form method="post" action="https://formspree.io/contact@example.com">
+            <div class="row 50%">
+                <div class="6u 12u$(mobile)"><input type="text" class="text" name="name" placeholder="Name" required/></div>
+                <div class="6u$ 12u$(mobile)"><input type="email" class="text" name="email" placeholder="Email" required/></div>
+                <div class="12u$">
+                    <textarea name="message" placeholder="Message" required></textarea>
                 </div>
-            </form>
-        </div>
-        <div class="form-response">
-            <p>Thank you for your submission. Your email will be processed shortly.</p>
-        </div>
+                <input type="text" name="_gotcha" style="display:none" />
+                <input type="hidden" name="_subject" value="New contact submission!" />
+                <input type="hidden" name="_next" value="https://mistermuratori.github.io/" />
+                <div class="12u$">
+                    <ul class="actions">
+                        <li><input type="submit" value="Send Message" /></li>
+                    </ul>
+                </div>
+            </div>
+        </form>
     </article>
 
     <section id="footer">

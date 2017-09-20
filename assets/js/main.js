@@ -207,6 +207,14 @@
             }
             sum = bikeCount * pricePerBike + frameCount * pricePerFrame;
             orderTotal.html(sum);
+
+            // update order form fields
+            $('.input-bike-count').val(bikeCount);
+            $('.input-frame-count').val(frameCount);
+            $('.input-bike-price').val(pricePerBike);
+            $('.input-frame-price').val(pricePerFrame);
+            $('.input-total').val(sum);
+
         }
 
         bikeNum.on('input', itemChanged);
@@ -227,108 +235,17 @@
 
         });
 
-        /* Forms */
-        var orderFormContent = $('#order-form-container .form-content');
-        var orderFormResponse = $('#order-form-container .form-response');
-        $('.order-form').on('submit', function (e) {
-            e.preventDefault();
-
-            var data = $(this).serializeArray().reduce(function(obj, item) {
-                obj[item.name] = item.value;
-                return obj;
-            }, {});
-
-            // send email
-            data.bike_num = parseInt(bikeNum.val()) || 0;
-            data.frame_num = parseInt(frameNum.val()) || 0;
-            data.price_per_bike = bikePrices[data.bike_num - 1] || bikePrices[0];
-            data.price_per_frame = framePrices[data.frame_num - 1] || framePrices[0];
-            data.total = sum;
-            sendEmail('example@domain.com', 'Mistermuratori new order', data, function (err) {
-
-                if (err) {
-                    return console.error(error);
-                }
-
-                // show response
-                orderFormContent.hide();
-                orderFormResponse.fadeIn(200);
-
-                // reset items
-                $('.order-form')[0].reset();
-                setTimeout(function () {
-                    orderFormResponse.hide()
-                    orderFormContent.show();
-
-                    bikeNum.val(0);
-                    frameNum.val(0);
-                    itemChanged();
-                }, 3000)
-            });
-        });
-
-        var contactFormContent = $('.contact-form-container .form-content');
-        var contactFormResponse = $('.contact-form-container .form-response');
-        $('.contact-form').on('submit', function (e) {
-            e.preventDefault();
-
-            var data = $(this).serializeArray().reduce(function(obj, item) {
-                obj[item.name] = item.value;
-                return obj;
-            }, {});
-
-            // send email
-            sendEmail('example@domain.com', 'Mistermuratori contact form submission', data, function (err) {
-
-                if (err) {
-                    return console.error(error);
-                }
-
-                // show response
-                contactFormContent.hide();
-                contactFormResponse.fadeIn(200);
-
-                // reset form
-                $('.contact-form')[0].reset();
-                setTimeout(function () {
-                    contactFormResponse.hide()
-                    contactFormContent.fadeIn(200);
-                }, 3000)
-            });
-        });
-
-        // Order utils
-
-        function sendEmail(to, subject, data, callback) {
-            data._subject = subject;
-            $.ajax({
-                url: 'https://formspree.io/' + to,
-                method: 'POST',
-                data: data,
-                dataType: 'json',
-                error: function (xhr, status, error) {
-                    callback(error);
-                },
-                success: function () {
-                    callback(null);
-                }
-            });
-        }
-
         function isOnScreen (element) {
             var win = $(window);
             var viewport = {
-                top : win.scrollTop(),
-                left : win.scrollLeft()
+                top : win.scrollTop()
             };
-            viewport.right = viewport.left + win.width();
             viewport.bottom = viewport.top + win.height();
 
             var bounds = orderFormCon.offset();
-            bounds.right = bounds.left + orderFormCon.outerWidth();
             bounds.bottom = bounds.top + orderFormCon.outerHeight();
 
-            return !(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom);
+            return !(viewport.bottom < bounds.top + orderFormCon.outerHeight() / 2 || viewport.top > bounds.bottom - orderFormCon.outerHeight() / 2);
         }
     });
 })(jQuery);
