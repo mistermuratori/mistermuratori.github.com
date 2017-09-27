@@ -164,9 +164,9 @@
                 bikeNum.val(0);
                 bikeCount = 0;
             }
-            if (frameCount > 5) {
-                frameNum.val(5);
-                frameCount = 5;
+            if (frameCount > 20) {
+                frameNum.val(20);
+                frameCount = 20;
             }
             if (frameCount < 0) {
                 frameNum.val(0);
